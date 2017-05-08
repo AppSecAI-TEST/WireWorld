@@ -46,7 +46,6 @@ public class Cell {
 
     @Override
     public int hashCode() {
-        return (coordinates.hashCode() + state.hashCode() + 31) * 5;
+        return (coordinates.hashCode() + state.hashCode() * 89) % 1009;
     }
-
 }

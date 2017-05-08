@@ -46,6 +46,6 @@ public class Coordinates {
 
     @Override
     public int hashCode() {
-        return (Integer.hashCode(x) + Integer.hashCode(y) + 31) * 5;
+        return (Integer.hashCode(x) + Integer.hashCode(y) * 89) % 1009;
     }
 }
