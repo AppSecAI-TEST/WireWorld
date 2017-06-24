@@ -1,5 +1,8 @@
 package logic;
 
+import java.util.Comparator;
+
+/*klasa reprezentujaca pojedyncza komorke*/
 public class Cell {
     private Coordinates coordinates;
     private State state;
@@ -24,6 +27,28 @@ public class Cell {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public static Comparator<Cell> compareCells() {
+        Comparator comparator = new Comparator<Cell>() {
+            @Override
+            public int compare(Cell cell1, Cell cell2) {
+                Coordinates c1 = cell1.getCoordinates();
+                Coordinates c2 = cell2.getCoordinates();
+                if(c1.getX() < c2.getX())
+                    return -1;
+                else if(c1.getX() > c2.getX())
+                    return 1;
+                else {
+                    if(c1.getY() < c2.getY())
+                        return -1;
+                    else if(c1.getY() > c2.getY())
+                        return 1;
+                }
+                return 0;
+            }
+        };
+        return comparator;
     }
 
     @Override
