@@ -2,6 +2,7 @@ package logic;
 
 import java.lang.Integer;
 
+/*klasa dla wspolrzednych*/
 public class Coordinates {
     private int x;
     private int y;
@@ -46,6 +47,6 @@ public class Coordinates {
 
     @Override
     public int hashCode() {
-        return (Integer.hashCode(x) + Integer.hashCode(y) * 89) % 1009;
+        return (Integer.hashCode(x) * 271 + Integer.hashCode(y) * 89) % 29879;
     }
 }
