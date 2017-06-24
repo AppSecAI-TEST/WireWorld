@@ -2,8 +2,14 @@ package graphics;
 
 import javafx.scene.paint.Color;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
+
+/*klasa zawierajaca sekwencje kolorow, ktora wystepuje po pojedynczym kliknieciu na planszy na komorke*/
 class SequenceOfColors {
-    private static Color[] colors = {Color.RED, Color.YELLOW, Color.BLACK, Color.BLUE};
+    private static final Color[] colors = Colors.getColors();
     static Color getNext(Color color) {
         int index = 0;
         for(int i = 0; i < colors.length; i++)
