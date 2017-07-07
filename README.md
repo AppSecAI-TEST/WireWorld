@@ -18,7 +18,7 @@ Generowanie kolejnych stanów komórek zależy od stanów komórek w bieżącej 
 W programie „WireWorld” stosowane jest sąsiedztwo Moore’a. Sąsiedztwo to charakteryzuje się tym, że każda komórka niestykająca się z granicami siatki posiada 8 sasiadów (w przypadku siatki skończonej komórki na krawędziach posiadają 5 sasiadów, natomiast komórki narożnikowe tylko 3 sąsiadów) znajdujących sie: na południu, na południowym zachodzie, na południowym wschodzie, na północy, na północnym zachodzie, na północnym wschodzie, na zachodzie oraz na wschodzie.
 
 Główne funkcje programu:
-- Wczytywanie do programu początkowej konfiguracji oraz zapisywanie bieżącej generacji komórek z pliku w formacie JSON
+- Wczytywanie do programu początkowej konfiguracji oraz zapisywanie bieżącej generacji komórek z pliku w formacie JSON przy użyciu biblioteki GSON
 - przeprowadzenie podanej przez użytkownika liczby generacji,
 - wizualizacja kolejnych generacji komórek na planszy.
 
@@ -34,3 +34,45 @@ wykorzystania w programie.
 stanów wszystkich komórek w grupie jednoczesnie.
 - Opcja recznego utworzenia konfiguracji poczatkowej planszy poprzez ustawianie stanów poszczególnych
 komórek na planszy.
+
+Pojedyncza komórka w pliku będzie reprezentowana w następujący sposób:
+{ "state" : "nazwa_stanu_komórki",
+  "coordinates" : [
+    { "x" : współrzędna_x, "y" : współrzędna_y },
+    ...
+    { "x" : współrzędna_x, "y" : współrzędna_y }
+  ]
+}
+
+Cała struktura posiada dwa sposoby reprezentacji. Pierwszy to definicja wszystkich poszczególnych komórek:
+{ "name" : "nazwa_struktury",
+  "structure" : [
+    { "state" : "nazwa_stanu_komórki",
+      "coordinates" : [
+        { "x" : współrzędna_x, "y" : współrzędna_y },
+        ...
+        { "x" : współrzędna_x, "y" : współrzędna_y }
+      ]
+    },
+      ...
+    { "state" : "nazwa_stanu_komórki",
+      "coordinates" : [
+        { "x" : współrzędna_x, "y" : współrzędna_y },
+        ...
+        { "x" : współrzędna_x, "y" : współrzędna_y }
+      ]
+    }
+  ]
+}
+
+Drugi możliwy sposób to wykorzystanie struktur wbudowanych:
+{ "name" : "nazwa_struktury_wbudowanej",
+  "structure" : [
+    {
+      "coordinates" : [
+        { "x" : współrzędna_x, "y" : "współrzędna_y" }
+      ]
+    }
+  ]
+}
+W przypadku wykorzystania struktury wbudowanej współrzędne x oraz y oznaczają miejsce, od którego ma się zacząć reprezentacja struktury wbudowanej na planszy, jest to przesunięcie względem górnego, lewego rogu. 
